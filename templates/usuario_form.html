@@ -1,0 +1,84 @@
+{% extends 'base.html'%} 
+{% crispy %} 
+{% block content %}
+
+<head>
+  <title>Formulario de Usuario</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .custom-container {
+      margin-left: 30%;
+      margin-right: 30%;
+    }
+  </style>
+</head>
+<body>
+    <div class="container">
+      <div class="custom-container bg-blank text-black text-center py-5">
+        <h1>{% if object %}Editar Usuario{% else %}Nuevo Usuario{% endif %}</h1>
+        <div>
+          {% for message in messages %}
+          {{ message }}
+          {% endfor %}
+        </div>
+        {% load crispy_forms_tags %}
+        <form method="post" style="max-width:1280px">
+            {% csrf_token %}    
+            {{ form|crispy }}
+            <div class="form-floating mb-3">
+                <input type="text" name="username" class="form-control" id="username" placeholder="Nombre de usuario:" value={{ form.username.value | default_if_none:''}}>                     
+                <label for="username">Nombre de usuario:</label>  
+                <div class="text-danger">
+                  {{form.username.error}}
+                </div>             
+            </div>
+            <div class="form-floating mb-3">
+                <input type="text" name="nombres" class="form-control" id="nombres" placeholder="Ingrese sus nombres:" value={{ form.nombres.value | default_if_none:''}}>
+                <label for="nombres">Nombre(s):</label>
+                <div class="text-danger">
+                  {{form.nombres.error}}
+                </div> 
+            </div>
+            <div class="form-floating mb-3">
+                <input type="text" name="apellidos" class="form-control" id="apellidos" placeholder="Ingrese sus apellidos:" value={{ form.apellidos.value | default_if_none:''}}>
+                <label for="apellidos">Apellidos:</label>
+                <div class="text-danger">
+                  {{form.apellidos.error}}
+                </div> 
+            </div>
+            <div class="form-floating mb-3">
+                <input type="text" name="rut" class="form-control" id="rut" placeholder="RUT:" value={{ form.rut.value | default_if_none:''}}>
+                <label for="rut">RUT:</label>
+                <div class="text-danger">
+                  {{form.rut.error}}
+                </div> 
+            </div>
+            <div class="form-floating mb-3">
+                <input type="text" name="direccion" class="form-control" id="direccion" placeholder="Ingrese su direccion:" value={{ form.direccion.value | default_if_none:''}}>
+                <label for="direccion">Dirección:</label>
+                <div class="text-danger">
+                  {{form.direccion.error}}
+                </div> 
+            </div>
+            <div class="form-floating mb-3">
+                <input type="text" name="telefono" class="form-control" id="telefono" placeholder="Telefono" value={{ form.telefono.value | default_if_none:''}}>
+                <label for="telefono">Teléfono:</label>
+                <div class="text-danger">
+                  {{form.telefono.error}}
+                </div> 
+            </div>
+            <div class="form-floating mb-3">
+              <select class="form-select" name="tipo_usuario" aria-label="Default seleccione:">
+                <option selected>Seleccione opción:</option>
+                <option value="Arrendador">Arrendador</option>
+                <option value="Arrendatario">Arrendatario</option>               
+              </select>
+          </div>
+            <button type="submit" class="btn btn-outline-success">Guardar</button>
+        </form>
+      </div>
+    </div>
+  
+ 
+</body>
+{% endblock %}

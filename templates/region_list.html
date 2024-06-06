@@ -1,0 +1,18 @@
+<!-- mi_aplicacion/templates/mi_aplicacion/region_list.html -->
+{% extends "base.html" %}
+
+{% block title %}Lista de Regiones{% endblock %}
+
+{% block content %}
+<h2>Lista de Regiones</h2>
+<a href="{% url 'region-create' %}">Nueva Región</a>
+<ul>
+    {% for region in object_list %}
+    <li>
+        <a href="{% url 'region-detail' region.pk %}">{{ region.nombre }}</a>
+    </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
+

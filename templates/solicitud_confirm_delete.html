@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Eliminar Región</title>
+</head>
+<body>
+    <h1>Eliminar Región</h1>
+    <p>¿Estás seguro que deseas eliminar la región "{{ object.nombre }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Eliminar</button>
+    </form>
+    <a href="{% url 'region-list' %}">Cancelar</a>
+</body>
+</html>

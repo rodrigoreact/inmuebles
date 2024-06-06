@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+
+{% block title %}Página de Inicio{% endblock %}
+{% load static %}
+{% block content %}
+<div class="page-heading header-text">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <span class="breadcrumb"><a href="{% url 'home' %}">Home</a> / Single Property</span>
+          <h3>{{inmueble.nombre}}</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="single-property section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8">
+          <p>Hola</p>
+          <div class="main-image">
+            <img src="/media/{{inmueble.imagen}}" alt="Hola">
+          </div>
+          <div class="main-content">
+            <span class="category">{{inmueble.tipo_de_inmueble}}</span>
+            <h4>{{inmueble.direccion}}</h4>
+            <p>
+              {{inmueble.descripcion}}
+            </p>
+          </div> 
+         
+        </div>
+        <div class="col-lg-4">
+          <div class="info-table">
+            <ul>
+              <li>
+                <img src="assets/images/info-icon-01.png" alt="" style="max-width: 52px;">
+                <h4>{{inmueble.m2_construidos}} m2<br><span>Metros construidos</span></h4>
+              </li>
+              <li>
+                <img src="assets/images/info-icon-02.png" alt="" style="max-width: 52px;">
+                <h4>Contract<br><span>Disponible</span></h4>
+              </li>
+              <li>
+                <img src="assets/images/info-icon-03.png" alt="" style="max-width: 52px;">
+                <h4>Payment<br><span>Payment Process</span></h4>
+              </li>
+              <li>
+                <img src="assets/images/info-icon-04.png" alt="" style="max-width: 52px;">
+                <h4>Safety<br><span>24/7 Under Control</span></h4>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% endblock %}

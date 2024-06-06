@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}Página de Inicio{% endblock %}
+{% load static %}
+{% block content %}
+<div class="section properties" style='height: 700px; overflow-y: auto; overflow-x: hidden;'>
+  <div class="container">
+    <ul class="properties-filter">
+      <li>
+        <a class="is_active" href="#!" data-filter="*">Todos</a>
+      </li>
+      <li>
+        <a href="#!" data-filter=".adv">casas</a>
+      </li>
+      <li>
+        <a href="#!" data-filter=".str">Departamentos</a>
+      </li>
+      <li>
+        <a href="#!" data-filter=".rac">Parcelas</a>
+      </li>
+    </ul>
+    
+    <div class="row properties-box">
+      {% for inm in inmuebles %}
+      <div class="col-lg-4 col-md-6 align-self-center mb-30 properties-items col-md-6 {% if inm.tipo_de_inmueble == 'casa' %} adv {% elif inm.tipo_de_inmueble == 'departamento' %} str {% elif inm.tipo_de_inmueble == 'parcela' %} rac {% endif %}">
+        <div class="item">
+          <a href="property-details.html"><img src="{{inm.imagen.url}}" alt=""></a>         
+          <span class="category">{{inm.tipo_de_inmueble}}</span>
+          <h6>${{ inm.precio|floatformat:'-3g' }}</h6>
+          <h4><a href="property-details.html">{{ inm.descripcion }}</a></h4>
+          <ul>
+            <li>habitaciones: <span>{{ inm.cantidad_habitaciones }}</span></li>
+            <li>banos: <span>{{ inm.cantidad_banos }}</span></li>
+            <li>Area : <span>{{inm.m2_construidos}}</span>(m2)</li>
+            <li>Pisos: <span>3</span></li>
+            <li>Estacionamientos: <span>{{inm.cantidad_estacionamientos}}</span></li>
+          </ul>
+          <div class="main-button">
+            <a href="#">Ver Detalles</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}

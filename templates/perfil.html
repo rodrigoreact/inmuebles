@@ -1,0 +1,100 @@
+{% extends 'base.html' %} {% block content %}
+<style>
+
+    .centered-container {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Estilos del formulario */
+    .custom-form {
+        width: 400px;
+        padding: 50px;
+        border: 2px solid #6b8e23; /* Borde con color verde olivo */
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Sombra */
+        margin-top: 250px; /* Margen superior de 250px */
+    }
+
+    /* Estilos para los campos de entrada */
+    .form-control {
+        height: 35px; /* Altura de los campos */
+    }
+
+    /* Estilos para las etiquetas de los campos */
+    .form-label {
+        margin-bottom: 5px; /* Espaciado inferior de las etiquetas */
+    }
+</style>
+<div class="centered-container py-5">
+  <div class="custom-form">
+     <div class="container">
+        <h2 class="mt-5">Actualizar Datos</h2>
+        <form method="post" class="mt-4">
+            {% csrf_token %}
+    
+            <!-- Campo Username -->
+            <div class="mb-3">
+                <label for="id_username" class="form-label">Username:</label>
+                <input type="text" class="form-control" id="id_nombres" maxlength="150"  name="nombres" value="{{ user.username }}" required>
+            </div>
+            
+            <!-- Campo Nombres -->
+            <div class="mb-3">
+                <label for="id_nombres" class="form-label">Nombres:</label>
+                <!-- <input type="text" name="nombres" class="form-control" id="id_nombres" maxlength="50" required> -->
+                <input type="text" class="form-control" id="id_nombres" maxlength="50" name="nombres" value="{{ user.nombres }}" required>
+            </div>
+            
+            <!-- Campo Apellidos -->
+            <div class="mb-3">
+                <label for="id_apellidos" class="form-label">Apellidos:</label>
+                <!-- <input type="text" name="apellidos" class="form-control" id="id_apellidos" maxlength="50" required> -->
+                <input type="text" class="form-control" id="id_apellidos" maxlength="50" name="apellidos" value="{{ user.apellidos }}" required>
+            </div>
+            
+            <!-- Campo Rut -->
+            <div class="mb-3">
+                <label for="id_rut" class="form-label">Rut:</label>
+                <input type="text" name="rut" class="form-control" id="id_rut" maxlength="10" value="{{ user.rut }}"  required>
+            </div>
+            
+            <!-- Campo Dirección -->
+            <div class="mb-3">
+                <label for="id_direccion" class="form-label">Dirección:</label>
+                <input type="text" name="direccion" class="form-control" id="id_direccion" maxlength="100" value="{{ user.direccion }}"  required>
+            </div>
+            
+            <!-- Campo Teléfono -->
+            <div class="mb-3">
+                <label for="id_telefono" class="form-label">Teléfono:</label>
+                <input type="text" name="telefono" class="form-control" id="id_telefono" maxlength="13" value="{{ user.telefono }}"  required>
+            </div>
+            
+            <!-- Campo Tipo de Usuario -->
+            <div class="mb-3">
+                <label for="id_tipo_usuario" class="form-label">Tipo de Usuario:</label>
+                <select name="tipo_usuario" class="form-select" id="id_tipo_usuario" required>
+                    <!-- <option value="arrendatario">Arrendatario</option>
+                    <option value="arrendador">Arrendador</option> -->
+                    <option value="arrendatario" {% if user.tipo_usuario == "arrendatario" %}selected{% endif %}>Arrendatario</option>
+                    <option value="arrendador" {% if user.tipo_usuario == "arrendador" %}selected{% endif %}>Arrendador</option>
+                </select>
+            </div>
+            
+            <!-- Campo Email -->
+            <div class="mb-3">
+                <label for="id_email" class="form-label">Email:</label>
+                <input type="email" class="form-control" id="id_email" maxlength="200" name="email" value="{{ user.email }}" required>
+            </div>
+            
+            <!-- Botón de Enviar -->
+            <button type="submit" class="btn btn-primary">Actualizar</button>
+        </form>
+    </div>
+  </div>
+</div>
+    {% endblock %}
+    

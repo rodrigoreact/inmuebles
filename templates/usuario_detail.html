@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Detalle de Usuario</title>
+</head>
+<body>
+    <h1>{{ object.username }}</h1>
+    <p>{{ object.nombres }} {{ object.apellidos }}</p>
+    <p>{{ object.email }}</p>
+    <p>{{ object.telefono }}</p>
+    <p>{{ object.direccion }}</p>
+    <p>{{ object.tipo_usuario }}</p>
+    <a href="{% url 'usuario-update' object.id %}">Editar</a>
+    <a href="{% url 'usuario-delete' object.id %}">Eliminar</a>
+    <a href="{% url 'usuario-list' %}">Volver a la lista</a>
+</body>
+</html>

@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+
+{% block title %}Alta inmueble{% endblock %}
+
+{% block content %}
+<head>
+    <title>Alta de inmueble por Arrendador</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+       .custom-container {
+        margin-top: auto;
+        margin-left: 24%;
+        margin-right: 24%;
+        margin-bottom: 30px; 
+  
+      }
+      .borde {
+        border: 1px solid black; /* Borde sólido negro */
+        box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.5); /* Sombra difusa con desvanecimiento */
+        padding: 20px; /* Ajusta el relleno según sea necesario */
+      }
+      h2 {
+        text-align: right;
+        margin-top: 20px;
+      }
+      form {
+        margin-bottom: 100px; /* Ajusta el valor según sea necesario */
+     }
+    </style>
+</head>
+<body>
+  <div class="d-flex justify-content-center align-items-center vh-100 pt-3">
+    <div class="custom-container borde">
+      <h2 class="text-center mb-4">Alta Inmueble</h2> 
+        <h1>{% if object %}Editar Usuario{% else %}{% endif %}</h1>
+        <div>
+          {% for message in messages %}
+          {{ message }}
+          {% endfor %}
+        </div>
+        <div class="borde">
+        <form method="post" style="max-width:1280px" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="form-floating mb-3 ">
+              <input type="text" name="nombre" required maxlength="50" class="form-control" id="id_nombre" placeholder="Nombre:" value="{{ form.nombre.value|default_if_none:'' }}">
+              <div class="text-danger">{{ form.nombre.errors }}</div>
+              <label for="id_nombre">Nombre:</label>
+          </div>
+          <div class="form-floating mb-3">
+              <input type="text" name="direccion" maxlength="50" class="form-control" required id="id_direccion" placeholder="Ingrese dirección:" value="{{ form.direccion.value|default_if_none:'' }}">
+              <label for="id_direccion">Dirección:</label>
+              <div class="text-danger">{{ form.direccion.errors }}</div>
+          </div>
+          <div class="form-floating mb-3">
+              <input type="text" name="descripcion" maxlength="50" class="form-control" required id="id_descripcion" placeholder="Ingrese descripción:" value="{{ form.descripcion.value|default_if_none:'' }}">
+              <label for="id_descripcion">Descripción:</label>
+              <div class="text-danger">{{ form.descripcion.errors }}</div>
+          </div>
+          <div class="form-group">
+            <label for="id_imagen">Imagen:</label>
+            <input type="file" name="imagen" id="id_imagen" class="form-control" required placeholder="Ingrese imagen:" value="{{ form.imagen.value|default_if_none:'' }}">
+            {% if form.imagen.errors %}
+            <div class="error">
+                {% for error in form.imagen.errors %}
+                <p>{{ error }}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
+          </div>
+          <div class="form-floating mb-3">
+              <input type="number" name="precio" step="1" maxlength="50" class="form-control" required id="id_precio" placeholder="Ingrese precio:" value="{{ form.precio.value|default_if_none:'' }}">
+              <label for="id_precio">Precio:</label>
+              <div class="text-danger">{{ form.precio.errors }}</div>
+          </div>
+          <div class="form-floating mb-3">
+            <select name="region" id="id_region" class="form-control" required>
+                {% for region in regiones %}
+                  <option value="{{ region.id }}">{{ region.nombre }}</option>
+                {% endfor %}
+            </select>
+            <label for="id_region">Región:</label>
+            <div class="text-danger">{{ form.region.errors }}</div>
+          </div>
+          <div class="form-floating mb-3">
+            <select name="comuna" id="id_comuna" class="form-control" required>
+                {% for comuna in comunas %}
+                  <option value="{{ comuna.id }}">{{ comuna.nombre }}</option>
+                {% endfor %}
+            </select>
+            <label for="id_comuna">Comuna:</label>
+            <div class="text-danger">{{ form.comuna.errors }}</div>
+          </div>
+         
+          <div class="form-group">
+            <label for="id_disponible">&nbsp;&nbsp;&nbsp;Disponible:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+            <input type="checkbox" name="disponible" id="id_disponible" class="form-check-input" {% if form.disponible.value %}checked{% endif %}>
+            {% if form.disponible.errors %}
+                <div class="error">
+                    {% for error in form.disponible.errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+          <div class="form-floating mb-3">
+            <input type="number" name="m2_construidos" step="0.01" required id="id_m2_construidos" class="form-control" value="{{ form.m2_construidos.value|default_if_none:'' }}">
+            <label for="id_m2_construidos">M<sup>2</sup> construidos:</label>
+            <div class="text-danger">{{ form.m2_construidos.errors }}</div>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="number" name="m2_terreno" step="0.01" required id="id_m2_terreno" class="form-control" value="{{ form.m2_terreno.value|default_if_none:'' }}">
+            <label for="id_m2_terreno">M<sup>2</sup> terreno:</label>
+            <div class="text-danger">{{ form.m2_terreno.errors }}</div>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="number" name="cantidad_estacionamientos" min="0" max="9223372036854775807" required id="id_cantidad_estacionamientos" class="form-control" value="{{ form.cantidad_estacionamientos.value|default_if_none:'' }}">
+            <label for="id_cantidad_estacionamientos">Cantidad estacionamientos:</label>
+            <div class="text-danger">{{ form.cantidad_estacionamientos.errors }}</div>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="number" name="cantidad_habitaciones" min="0" max="9223372036854775807" required id="id_cantidad_habitaciones" class="form-control" value="{{ form.cantidad_habitaciones.value|default_if_none:'' }}">
+            <label for="id_cantidad_habitaciones">Cantidad habitaciones:</label>
+            <div class="text-danger">{{ form.cantidad_habitaciones.errors }}</div>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="number" name="cantidad_banos" min="0" max="9223372036854775807" required id="id_cantidad_banos" class="form-control" value="{{ form.cantidad_banos.value|default_if_none:'' }}">
+            <label for="id_cantidad_banos">Cantidad de baños:</label>
+            <div class="text-danger">{{ form.cantidad_banos.errors }}</div>
+          </div>
+          <div class="form-floating mb-3">
+            <select name="tipo_de_inmueble" id="id_tipo_de_inmueble" class="form-select" aria-label="Default select example" required>
+              <option value="casa" {% if form.tipo_de_inmueble.value == "casa" %}selected{% endif %}>Casa</option>
+              <option value="departamento" {% if form.tipo_de_inmueble.value == "departamento" %}selected{% endif %}>Departamento</option>
+              <option value="parcela" {% if form.tipo_de_inmueble.value == "parcela" %}selected{% endif %}>Parcela</option>
+            </select>
+            <label for="id_tipo_de_inmueble">Tipo de inmueble:</label>
+            <div class="text-danger">{{ form.tipo_de_inmueble.errors }}</div>
+          </div>
+          <button type="submit" class="btn btn-primary">Guardar</button>        
+        </form>
+      </div>
+      </div>
+  </div>
+</body>
+{% endblock %}

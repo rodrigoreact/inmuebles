@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% comment %} {% load static %} {% endcomment %}
+{% comment %} <!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle del Inmueble</title>
+</head>
+<body> {% endcomment %}
+    {% comment %} <h1>Detalle del Inmueble</h1>
+    <ul>
+        <li><strong>Nombre:</strong> {{ inmueble.nombre }}</li>
+        <li><strong>Dirección:</strong> {{ inmueble.direccion }}</li>
+        <li><strong>Descripción:</strong> {{ inmueble.descripcion }}</li> {% endcomment %}
+        <li><strong>Precio:</strong> {{ inmueble.precio }}</li>
+        <li><strong>Comuna:</strong> {{ inmueble.comuna }}</li>
+        {% comment %} <li><strong>Imagen:</strong><img src="/media/{{inmueble.imagen}}" alt="Hola Inmueble"></li> {% endcomment %}
+        <!-- Agrega los demás campos que desees mostrar "/static/images/descarga.jpg". -->
+        <!-- src="/media/{{inm.imagen}}" -->
+    </ul>
+{% comment %} </body>
+</html> {% endcomment %}
+<!--Otro archivo---------------------------------------------->
+
+{% block title %}Página de Inicio{% endblock %}
+{% load static %}
+{% block content %}
+<div class="page-heading header-text">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <span class="breadcrumb"><a href="{% url 'home' %}">Home</a> / Single Property</span>
+          <h3>{{inmueble.nombre}}</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="single-property section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="main-image">
+            {% comment %} <img src="/media/{{inmueble.imagen}}"> {% endcomment %}
+            <img src="/media/{{inmueble.imagen}}" alt="Hola">
+          </div>
+          <div class="main-content">
+            <span class="category">{{inmueble.tipo_de_inmueble}}</span>
+            <h4>{{inmueble.direccion}}</h4>
+            <p>
+              {{inmueble.descripcion}}
+            </p>
+          </div> 
+         
+        </div>
+        <div class="col-lg-4">
+          <div class="info-table">
+            <ul>
+              <li>
+                <img src="assets/images/info-icon-01.png" alt="" style="max-width: 52px;">
+                <h4>{{inmueble.m2_construidos}} m2<br><span>Metros construidos</span></h4>
+              </li>
+              <li>
+                <img src="assets/images/info-icon-02.png" alt="" style="max-width: 52px;">
+                <h4>Precio: <br><span>{{ inmueble.precio }}</span></h4>          
+              </li>
+              <li>
+                <img src="static/assets/images/info-icon-03.png" alt="" style="max-width: 52px;">
+                <h4>Comuna: <br><span>{{ inmueble.comuna }}</span></h4>         
+              </li>
+              <li>
+                <img src="static/assets/images/info-icon-04.png" alt="" style="max-width: 52px;">
+                <h4>Metros construídos: <br><span>{{ inmueble.m2_construidos }}</span></h4>
+              </li>
+              <li>
+                <img src="static/assets/images/info-icon-04.png" alt="" style="max-width: 52px;">
+                <h4>N° de estacionamientos: <br><span>{{ inmueble.cantidad_estacionamientos }}</span></h4>
+              </li>
+              <li>
+                <img src="static/assets/images/info-icon-04.png" alt="" style="max-width: 52px;">
+                <h4>N° de habitaciones: <br><span>{{ inmueble.cantidad_habitaciones }}</span></h4>
+              </li>
+              <li>
+                <img src="static/assets/images/info-icon-04.png" alt="" style="max-width: 52px;">
+                <h4>N° de baños: <br><span>{{ inmueble.cantidad_banos }}</span></h4>
+              </li>
+              <li>
+                <img src="static/assets/images/info-icon-04.png" alt="" style="max-width: 52px;">
+                <h4>Tipo de inmueble: <br><span>{{ inmueble.tipo_de_inmueble }}</span></h4>
+              </li>
+              <li>
+                <a class="nav-link d-inline" href="{% url 'inmueble-update' inmueble.id %}">
+                  <button type="button" class="btn btn-primary">Editar inmueble</button>   
+                </a>
+              </li> 
+              <li>
+                <a class="nav-link d-inline" href="{% url 'inmueble-delete' inmueble.id %}">
+                  <button type="button" class="btn btn-primary">Eliminar inmueble</button>   
+                </a>   
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% endblock %}

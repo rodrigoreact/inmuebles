@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Inmuebles</title>
+</head>
+<body>
+    <h1>Lista de Inmuebles</h1>
+    <ul>
+        {% for inmueble in inmuebles %}
+        <li>{{ inmueble.nombre }} - {{ inmueble.direccion }}</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'inmueble-create' %}">Crear Nuevo Inmueble</a>
+</body>
+</html>

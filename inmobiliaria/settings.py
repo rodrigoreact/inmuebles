@@ -50,10 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    "crispy_forms",
-    # "crispy_bootstrap5",
-    #'contact.apps.ContactConfig',
-    'app', 
+     'app', 
 ]
 # Configuración de Crispy-forms
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"

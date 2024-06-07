@@ -1,6 +1,5 @@
 /.venv
 /env
-todos_los_datos.json
 resultado_comunas.txt
 usuarios.json
 consulta_comuna.txt

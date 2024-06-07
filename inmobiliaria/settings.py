@@ -32,7 +32,7 @@ SECRET_KEY =os.environ.get('SECRET_KEY')
 #Cambio el debug a False segun las indicaciones del error
 DEBUG = True
 ALLOWEB_HOSTS = ['*']
-CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1', 'https://inmuebles-08gl.onrender.com']
 
 
 AUTH_USER_MODEL = 'app.Usuario'

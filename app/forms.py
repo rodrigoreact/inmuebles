@@ -1,7 +1,7 @@
-from django import forms
+from django import forms # type: ignore #
 from .models import Contacto, Usuario, SolicitudArriendo, Inmueble, Region, Comuna
-from django.contrib.auth.forms import UserChangeForm
-from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserChangeForm # type: ignore
+from django.contrib.auth.models import User # type: ignore
 
 # y porqué importa el modelo de User
 
@@ -62,7 +62,3 @@ class ContactForm(forms.ModelForm):
         model = Contacto
         fields= ['name', 'email', 'message', 'contact_type', 'suscription']
 
-# class CustomUserChangeForm(UserChangeForm):
-#     class Meta(UserChangeForm.Meta):
-#         model = Usuario
-#         fields = ['nombres', 'apellidos', 'email']

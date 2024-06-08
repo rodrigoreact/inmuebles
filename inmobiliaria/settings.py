@@ -31,7 +31,7 @@ SECRET_KEY =os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 #Cambio el debug a False segun las indicaciones del error
 DEBUG = True
-ALLOWED_HOSTS = ['inmuebles-08gl.onrender.com', 'http://127.0.0.1']
+ALLOWED_HOSTS = ['inmuebles-08gl.onrender.com', '127.0.0.1']
 CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1', 'https://inmuebles-08gl.onrender.com']
 
 
